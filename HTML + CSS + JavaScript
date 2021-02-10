@@ -155,3 +155,152 @@ body{
 	 color: #E0FFFF;
 }
 
+--=======================================================--
+--==================== CSS por tag ======================--
+
+/* html */
+
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geek University - Uso CSS - Tag</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="CSS Teste1.css">
+</head>
+<body>
+	<p>Evolua seu lado Geek</p>
+
+	<span>Outro texto qualquer</span>
+
+	<p>Outro Paragrafo</p>
+	
+</body>
+</html>
+
+/* CSS Teste1.css */
+
+p {
+	color: red;
+	font-weight: bold;
+
+}
+
+
+
+--=========================================================--
+--==================== CSS por Class ======================--
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geek University - CSS por Class </title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="CSS por Class.css">
+</head>
+<body>
+		<p class="verde">Evolua seu lado Geek</p>
+
+		<span class="verde">Outro Texto Qualquer </span>
+
+		<p class="verde" > Outro paragrafo qualquer</p>
+</body>
+</html>
+
+
+/* CSS por Class */
+
+p {
+	color: red;
+	font-weight: bold;
+}
+
+.verde {
+
+	color: green;
+	font-size: 42px;
+
+}
+
+
+
+--=========================================================--
+--==================== CSS por id =========================--
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geek University - CSS po id</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="CSS por id.css">
+</head>
+<body>
+		<p>Evolua seu lado Geek</p>
+
+		<span class="verde">Outro Texto</span>
+
+		<p id="p2" class="verde">Outro Parágrafo</p>
+
+</body>
+</html>
+
+
+/* CSS por id */
+
+p {                               /* Cor do parágrafo e fonte Negrito*/
+
+	color: red;
+	font-weight: bold;
+}
+
+.verde {                          /* CSS utilizando Class, tamanho da fonte */
+
+	color: green;
+	font-size: 42px;
+
+}
+
+#p2 {                              /* CSS Utilizando id, Identificador, neste caso underline */
+
+	text-decoration: underline;
+
+}
+
+
+
+--===============================================--
+--============== INICIO JavaScript ==============--
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geek University - JavaScript</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+		<center>
+
+			<h1>Geek University</h1>
+			<button onclick="gritar();">Clique em mim</button>
+
+		</center>
+
+		<script type="text/javascript" src="script.js"></script>
+
+
+</body>
+</html>
+
+
+/* Script.js */
+
+function gritar() {
+
+		alert("Aaaaaaaaaaaaaaaaaaaaaaaah!");
+}
+
+
