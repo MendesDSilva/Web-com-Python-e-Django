@@ -420,3 +420,534 @@ function incrementar(){
 	p1.innerText = parseInt(p1.innerText) + 1; // Converte texto em numero inteiro e incrementa + 1
 
 }
+
+
+
+--=================== Bootstrap Freamwork =======================--
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geek University</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	
+</head>
+<body>
+
+	<div class="container">
+		<h1>Geek University</h1>
+
+	</div>
+
+
+<br><br>
+
+	<div class="container">
+		
+			<div class="alert alert-primary" role="alert">
+			  A simple primary alert—check it out!
+			</div>
+			<div class="alert alert-secondary" role="alert">
+			  A simple secondary alert—check it out!
+			</div>
+			<div class="alert alert-success" role="alert">
+			  A simple success alert—check it out!
+			</div>
+			<div class="alert alert-danger" role="alert">
+			  A simple danger alert—check it out!
+			</div>
+			<div class="alert alert-warning" role="alert">
+			  A simple warning alert—check it out!
+			</div>
+			<div class="alert alert-info" role="alert">
+			  A simple info alert—check it out!
+			</div>
+			<div class="alert alert-light" role="alert">
+			  A simple light alert—check it out!
+			</div>
+			<div class="alert alert-dark" role="alert">
+			  A simple dark alert—check it out!
+			</div>
+
+	</div>
+
+<div class="container">
+
+
+		<button type="button" class="btn btn-primary">Primary</button>
+		<button type="button" class="btn btn-secondary">Secondary</button>
+		<button type="button" class="btn btn-success">Success</button>
+		<button type="button" class="btn btn-danger">Danger</button>
+		<button type="button" class="btn btn-warning">Warning</button>
+		<button type="button" class="btn btn-info">Info</button>
+		<button type="button" class="btn btn-light">Light</button>
+		<button type="button" class="btn btn-dark">Dark</button>
+		<button type="button" class="btn btn-link">Link</button>
+
+
+</div>	
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+--==================== Django Freamwork ========================--
+
+
+# Instalando o Django 
+
+pip install django 
+
+
+# Criando diretório para salvar as bibliotecas utilizadas no projeto
+
+
+pip freeze > requirements.txt 
+
+
+
+#Criando PROJETO Djando 
+
+django-admin startproject "Django1" .  # Cria projeto Django com o gerenciado manage.py
+
+
+#Criar uma APLICAÇÃO Django
+
+django-admin startapp core . 	  # Cria aplicação Django Core, porque significa nucleo
+
+# Toda vez que criar uma aplicação..Ir em settings.py -> INSTALLED_APPS e adicionar a aplicação
+
+
+# Application definition
+
+settings.py
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'core', <----------
+]
+
+
+# Criar um diretório de templates, eu tenho que irformar que o diretório para os templates será chamdo templates
+
+	TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': ['templates'], <------
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+
+
+# Executar a aplicação 
+
+->  python manage.py runserver
+
+# Entrar link 
+
+http://127.0.0.1:8000/
+
+
+---====================================================---
+---=============== Criando páginas ====================---
+
+# Criando uma View no Core
+
+from django.shortcuts import render
+
+
+# Criando View página Index(Pagina inicial)
+
+def index(request):
+	return render(request, 'index.html')
+
+
+# Criando View página de contato 
+
+
+def contato(request):
+	return render(request, 'contato.html')
+
+
+---====================================================---
+---================= Criando Rotas ====================---
+
+
+ """Django1 URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/3.1/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path
+
+--============= Importando de forma NÃO IDEAL ================--
+
+from core.view import index  # Da aplicação "core" importar a função "index"
+from core.view import contato # Importando a View contato da View
+
+
+# Criando rotas
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', index),
+    path('/contato', contato),
+]
+
+
+--============= Importando de forma IDEAL ================--
+
+-- views (core)
+
+from django.shortcuts import render
+
+
+# Criando View Página inicial (index) 
+
+def index(request):
+    return render(request, 'index.html')
+
+
+# Criando View Pagina de contato
+
+def contato(request):
+    return render(request, 'contato.html')
+
+
+--=========== Criando Rotas ==============--
+
+-- Urls (Projeto Django1) # 	
+
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('core.urls'))
+
+]
+
+
+-- Urls na aplicação (core)
+
+# Tudo o que for inserido na aplicaçao vai para é criada Rota no projeto (Django1)
+
+from django.urls import path
+from .views import index, contato
+
+
+urlpatterns = [
+
+path('', index),
+path('contato', contato),
+
+
+
+]
+
+
+-- =============== Criar uma Pasta de templates na aplicação (core) ================ --
+
+- new folder como "templates"
+
+-============ Criando Views =============-
+
+-- Arquivo views.py da aplicação "core"
+
+
+from django.shortcuts import render
+
+
+# Criando View Página inicial (index) 
+
+def index(request):
+    context = {
+        'curso': 'Programação com Django Freamwork',
+        'outro': 'Django é Massa!!'
+
+    }
+    return render(request, 'index.html',context)
+
+
+# Criando View Pagina de contato
+
+def contato(request):
+    return render(request, 'contato.html')
+
+
+
+
+# Criar os Arquivos Index e contato como html
+
+-- Index --
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+
+<head>
+
+        <meta charset="UTF-8">
+        <title>Django1 - index</title>
+
+</head>
+
+<body>
+    
+    <h1>Index</h1>
+    
+    <h2>{{curso }}</h2>
+
+    <p>{{outro}}</p>
+</body>
+</html>
+
+--===================================--
+
+-- Contato -- 
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+        <meta charset="UTF-8">
+        <title>title</title>
+</head>
+
+
+<body>
+        <h1>Contato</h1>
+       
+</body>
+
+
+</html>
+
+
+--=========== Criando o modelo de dados do projeto ============--
+
+-- Arquivo models.py da aplicação "core"
+
+
+from django.db import models
+
+# Criando o modelo do Projeto 
+
+# Tabela Produto 
+
+class Produto(models.Model):
+    nome = models.CharField('Nome', max_length=100)
+    preco = models.DecimalField('Preço', decimal_places=2, max_digits=8) # 2 casas decimais e no máximo 10 dpigitos
+    estoque = models.IntegerField('Quantidade de Estoque')
+
+
+
+--============ Criando a Migration do projeto ==============-
+
+# É uma forma de gerenciar o histórico de modificação do banco de dados 
+
+# Ele le todas as aplicações do projeto, somente se as apps forem configuradas no settings e 
+# cria a migration
+
+# Código
+python manage.py makemigrations 
+
+
+-- Cria a tabela do modelo do banco de dados do projeto 
+
+
+ # Executando a migration
+
+ pyhton manage.py migrate 
+
+ # Output
+
+# Generated by Django 3.1.6 on 2021-02-27 04:03
+
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Produto',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('nome', models.CharField(max_length=100, verbose_name='Nome')),
+                ('preco', models.DecimalField(decimal_places=2, max_digits=8, verbose_name='Preço')),
+                ('estoque', models.IntegerField(verbose_name='Quantidade de Estoque')),
+            ],
+        ),
+    ]
+
+
+--================ Criando a tabela Clientes =================--
+
+# Código
+python manage.py makemigrations 
+
+
+-- Cria a tabela do modelo do banco de dados do projeto 
+
+# Criando tabela Client
+
+class Cliente(models.Model):
+    nome = models.CharField('Nome', max_length=100)
+    sobrenome = models.CharField('Sobrenome', max_length=100)
+    email = models.EmailField('Email', max_length=100)
+
+
+
+# Código
+python manage.py makemigrations 
+
+# Generated by Django 3.1.6 on 2021-02-27 04:37
+
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('core', '0001_initial'),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Cliente',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('nome', models.CharField(max_length=100, verbose_name='Nome')),
+                ('sobrenome', models.CharField(max_length=100, verbose_name='Sobrenome')),
+                ('email', models.EmailField(max_length=100, verbose_name='Email')),
+            ],
+        ),
+    ]
+
+
+
+--================== Criando usuário administrativo =======================--
+
+python manage.py createsuperuser
+
+
+Usuário (leave blank to use 'mateus'): @MendesDSilva
+Endereço de email: mendonsa_23@hotmail.com
+Password: 
+Password (again):
+Password:
+Password (again):
+A senha é muito parecida com endereço de email
+Bypass password validation and create user anyway? [y/N]: gibsonsx
+Password:
+Password (again):
+Superuser created successfully.
+
+
+--============ Criando Opções na area administrativa ============--
+
+from django.contrib import admin
+
+from .models import Produto, Cliente
+
+admin.site.register(Produto)
+admin.site.register(Cliente)
+
+
+--============ Nomeando os produtos ==============--
+
+# Tabela Produto 
+
+models.py
+
+class Produto(models.Model):
+    nome = models.CharField('Nome', max_length=100)
+    preco = models.DecimalField('Preço', decimal_places=2, max_digits=8) # 2 casas decimais e no máximo 10 dpigitos
+    estoque = models.IntegerField('Quantidade de Estoque')
+
+    def __str__(self):         
+        return self.nome        <- Define como o nome do produto
+
+# Criando tabela Cliente
+
+class Cliente(models.Model):
+    nome = models.CharField('Nome', max_length=100)
+    sobrenome = models.CharField('Sobrenome', max_length=100)
+    email = models.EmailField('Email', max_length=100)
+
+
+    def __str__(self):
+    	return f'{self.nome}  {self.sobrenome}'
+
+
+
+
+--============ Adaptando Produto e Cliente no Admin ============-
+
+
+from django.contrib import admin
+
+from .models import Produto, Cliente
+
+
+# Mostra um display com o nome, preço e estoque do produto
+
+class ProdutoAdmin(admin.ModelAdmin):
+    list_display = ('nome','preco','estoque')
+
+# Mostra o nome e E-mail do Cliente
+
+class ClienteAdmin(admin.ModelAdmin):
+    list_display = ('nome','email')
+
+admin.site.register(Produto, ProdutoAdmin)
+admin.site.register(Cliente, ClienteAdmin)
+
+
+
+
+
+
+
+
+
+
+
+
