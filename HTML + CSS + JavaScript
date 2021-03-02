@@ -498,7 +498,6 @@ function incrementar(){
 
 --==================== Django Freamwork ========================--
 
-
 # Instalando o Django 
 
 pip install django 
@@ -951,6 +950,228 @@ urlpatterns = [
     path('', include('core.urls'))
 
 ]
+
+
+--============== Inserindo dados através do Shell ====================--
+
+# Código 
+
+python manage.py Shell
+
+# Inserindo dados na tabela de protudos 
+
+from core.models import Produto 
+
+Produto = Produto(nome='Atari 2600', preco=199.67, estoque=100)
+Produto.save()
+
+# Inserindo dados na tabela de clientes
+
+from core.models import Cliente
+
+Cliente = Cliente(nome="Anjelina", sobrenome="Jolie",email="anjelinajolie@gmail.com")
+Cliente.save()
+
+# Alterando dados 
+
+Cliente.nome = 'Maria'
+Cliente.save()
+
+Cliente.id
+Cliente.pk
+
+# Deletando Cliente
+
+Cliente.delete()
+
+--====== Mostrando dados do banco de dados no template =======--
+# Analisando todas as cláusulas 
+
+from core.models import Produto
+
+dir(Produto.objects)
+
+out:
+
+Out[10]: 
+
+['__class__',
+ '__class_getitem__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__slotnames__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__',
+ '_constructor_args',
+ '_db',
+ '_get_queryset_methods',
+ '_hints',
+ '_insert',
+ '_queryset_class',
+ '_set_creation_counter',
+ '_update',
+ 'aggregate',
+ 'all',
+ 'annotate',
+ 'auto_created',
+ 'bulk_create',
+ 'bulk_update',
+ 'check',
+ 'complex_filter',
+ 'contribute_to_class',
+ 'count',
+ 'create',
+ 'creation_counter',
+ 'dates',
+ 'datetimes',
+ 'db',
+ 'db_manager',
+ 'deconstruct',
+ 'defer',
+ 'difference',
+ 'distinct',
+ 'earliest',
+ 'exclude',
+ 'exists',
+ 'explain',
+ 'extra',
+ 'filter',
+ 'first',
+ 'from_queryset',
+ 'get',
+ 'get_or_create',
+ 'get_queryset',
+ 'in_bulk',
+ 'intersection',
+ 'iterator',
+ 'last',
+ 'latest',
+ 'model',
+ 'name',
+ 'none',
+ 'only',
+ 'order_by',
+ 'prefetch_related',
+ 'raw',
+ 'reverse',
+ 'select_for_update',
+ 'select_related',
+ 'union',
+ 'update',
+ 'update_or_create',
+ 'use_in_migrations',
+ 'using',
+ 'values',
+ 'values_list']
+
+
+# Cláusula all() trás todos os dados do banco 
+
+Produt.objects.all()
+
+from core.models import Protudo 
+
+dir(Produto.objects)
+
+Produtos = Produto.objects.all()
+
+Produtos 
+Out[5]: <QuerySet [<Produto: Playstation 4>, <Produto: XBox 360>, <Produto: Nintendo Wi>, <Produto: Atari 2600>]>
+
+# Imprimindo dados 
+
+for Produto in produtos:
+	print(Produto)
+
+out:
+
+Playstation 4
+XBox 360
+Nintendo Wi
+Atari 2600
+
+--=================
+
+# Cláusula 'count()' Faz a contagem dos valores do banco de dados 
+
+from core.models import Produto
+
+dir(Produto)
+
+dir(Produto.objects)
+
+TotalProdutos = Produto.objects.count()
+
+--================
+
+# Cláusula 'first()' Trás o primeiro produto da lista 
+
+from core.models import Produto
+
+dir(Produto.objects)
+
+PrimeiroProduto = Produto.objects.first()
+
+In [19]: PrimeiroProduto
+
+Out[19]: <Produto: Playstation 4>
+
+
+--================
+
+# Cláusila 'last()' Trás o último item da tabela 
+
+from core.models import Produto
+
+dir(Produto.objects)
+
+UltimoItem = Produto.objects.last()
+
+In [24]: UltimoItem
+Out[24]: <Produto: Atari 2600>
+
+
+--===============
+
+# Cláusula 'filter()' Filtra um ítem da tabela 
+
+
+from core.models import Produto 
+
+dir(Produto.objects)
+
+Id1 = Produto.objects.filter(id=1)
+
+In [28]: id1
+Out[28]: <QuerySet [<Produto: Playstation 4>]>
+
+
+
+
+
+
+
 
 
 
